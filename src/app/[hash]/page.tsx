@@ -1,7 +1,8 @@
 import React from "react";
 import type { Metadata, ResolvingMetadata } from "next";
 import { headers } from "next/headers";
-import { cid } from 'is-ipfs'
+import { cid } from "is-ipfs";
+import Image from "next/image";
 
 type Props = {
   params: { hash: string };
@@ -31,7 +32,7 @@ export async function generateMetadata(
       },
       other: {
         "fc:frame": "vNext",
-        "fc:frame:image": `${protocal}://${host}/error.webp`
+        "fc:frame:image": `${protocal}://${host}/error.webp`,
       },
     };
   }
@@ -58,6 +59,17 @@ export async function generateMetadata(
   };
 }
 
-export default function Page() {
-  return <main />;
+export default function Page({ params }: Props) {
+  const isValid = cid(params.hash)
+
+  return (
+    <main className="flex h-100vh w-100vw justify-center items-center">
+      <Image
+        src={isValid ? `https://ipfs.io/ipfs/${params.hash}` : '/error.webp'}
+        width={500}
+        height={500}
+        alt="IPFS Image"
+      />
+    </main>
+  );
 }

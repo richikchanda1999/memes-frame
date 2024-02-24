@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAddressForFid, validateFrameMessage } from "src/utils/farcaster";
+import { appendRow } from "src/utils/gsheets";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
-
-  console.log(data);
 
   const caption = data?.untrustedData?.inputText;
   const url = data?.untrustedData?.url;
@@ -19,7 +18,14 @@ export async function POST(req: NextRequest) {
       const address = await getAddressForFid(fid);
       if (address) {
         // TODO: Store content against this address
-        return NextResponse.redirect(`${url}/thanks`, 302);
+        const append = await appendRow(url, caption, address);
+        if (append) return NextResponse.redirect(`${url}/thanks`, 302);
+        else
+          console.log("Error adding data to speadsheet", {
+            url,
+            caption,
+            address,
+          });
       } else console.log("Could not find address for fid = ", fid);
     } else console.log("Not fid = ", fid, " present for valid message");
   }

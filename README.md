@@ -25,7 +25,7 @@ Wherever you host this, you should get a domain for that.
 
 To use it as a frame, append the IPFS Hash of an image to that, and you should be good.
 
-For example, if you have hosted the app at [https://memes-frames.vercel.app](https://memes-frames.vercel.app) and you have the hash of an image on IPFS, say `QmarPqdEuzh5RsWpyH2hZ3qSXBCzC5RyK3ZHnFkAsk7u2f`, the link to the frame would be [https://memes-frames.vercel.app/QmarPqdEuzh5RsWpyH2hZ3qSXBCzC5RyK3ZHnFkAsk7u2f](https://memes-frames.vercel.app/QmarPqdEuzh5RsWpyH2hZ3qSXBCzC5RyK3ZHnFkAsk7u2f)
+For example, if you have hosted the app at [https://memes-frame.vercel.app](https://memes-frame.vercel.app) and you have the hash of an image on IPFS, say `QmarPqdEuzh5RsWpyH2hZ3qSXBCzC5RyK3ZHnFkAsk7u2f`, the link to the frame would be [https://memes-frame.vercel.app/QmarPqdEuzh5RsWpyH2hZ3qSXBCzC5RyK3ZHnFkAsk7u2f](https://memes-frame.vercel.app/QmarPqdEuzh5RsWpyH2hZ3qSXBCzC5RyK3ZHnFkAsk7u2f)
 
 ## About Contributing
 You are free to contribute to this in any manner possible. There are no set guidelines to follow. Raise a PR, we'll explore!

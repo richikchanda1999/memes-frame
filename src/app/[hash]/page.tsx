@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata, ResolvingMetadata } from "next";
 import { headers } from "next/headers";
+import { cid } from 'is-ipfs'
 
 type Props = {
   params: { hash: string };
@@ -11,9 +12,29 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  console.log({ params, searchParams });
   const host = headers().get("host");
   const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
+
+  if (!cid(params.hash)) {
+    // Return error frame!
+    return {
+      title: "Ah oh!",
+      description: "Could not find the image!",
+      openGraph: {
+        images: [
+          {
+            url: `${protocal}://${host}/error.webp`,
+            width: 1200,
+            height: 630,
+          },
+        ],
+      },
+      other: {
+        "fc:frame": "vNext",
+        "fc:frame:image": `${protocal}://${host}/error.webp`
+      },
+    };
+  }
 
   return {
     title: "Meme frame",

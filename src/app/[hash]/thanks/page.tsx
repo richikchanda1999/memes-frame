@@ -31,7 +31,7 @@ export async function generateMetadata(
       "fc:frame": "vNext",
       "fc:frame:image": `${protocal}://${host}/thank-you.webp`,
       "fc:frame:button:1": "LFG!",
-      "fc:frame:post_url": `${protocal}://${host}`,
+      "fc:frame:post_url": `${protocal}://${host}/${params.hash}`,
     },
   };
 }
